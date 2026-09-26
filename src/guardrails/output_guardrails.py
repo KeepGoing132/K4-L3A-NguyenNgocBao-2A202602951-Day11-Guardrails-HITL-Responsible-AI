@@ -5,7 +5,16 @@ Checkpoint 2 — Output Guardrails
   - LLM-as-Judge                          ← optional (không chấm)
 """
 import re
+import sys
 import textwrap
+from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
 
 from google.genai import types
 from google.adk.agents import llm_agent

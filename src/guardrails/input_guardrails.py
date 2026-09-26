@@ -11,7 +11,16 @@ Status convention (không dùng True/False mơ hồ):
 from __future__ import annotations
 
 import re
+import sys
+from pathlib import Path
 from typing import Literal
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
 
 from google.genai import types
 from google.adk.plugins import base_plugin
